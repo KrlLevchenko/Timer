@@ -1,0 +1,38 @@
+on: push
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup dotnet ${{ matrix.dotnet-version }}
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: 5.0
+        
+    - name: Restore
+      run: dotnet restore
+    
+    - name: Build Timer
+      run: dotnet build --configuration Release
+      working-directory: Timer
+    
+    - name: Publish Timer
+      run: dotnet publish --configuration Release
+      working-directory: Timer
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1 
+      with:
+          username: ${{ secrets.DOCKER_LOGIN }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+   
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        context: Pushinator.Web         
+        tags: takayoshisimizu/timer
+        tag_with_ref: true
