@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Pushinator.Web.ExceptionHandling.Exceptions;
+using Timer.ExceptionHandling.Exceptions;
 
 namespace Pushinator.Web.Core
 {

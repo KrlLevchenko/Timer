@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Pushinator.Web.Core.ExceptionHandling;
-using Pushinator.Web.ExceptionHandling.Exceptions;
+using Timer.ExceptionHandling.Exceptions;
 
-namespace Pushinator.Web.ExceptionHandling.ExceptionHandlers
+namespace Timer.ExceptionHandling.ExceptionHandlers
 {
     public class ValidationFailedExceptionHandler: ExceptionHandlerBase<ValidationFailedException>
     {

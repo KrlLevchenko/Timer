@@ -1,6 +1,6 @@
 using System;
 
-namespace Pushinator.Web.ExceptionHandling.Exceptions
+namespace Timer.ExceptionHandling.Exceptions
 {
     public class EntityNotFoundException: Exception
     {

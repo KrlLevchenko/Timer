@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentValidation.Results;
 
-namespace Pushinator.Web.ExceptionHandling.Exceptions
+namespace Timer.ExceptionHandling.Exceptions
 {
     public class ValidationFailedException: Exception
     {

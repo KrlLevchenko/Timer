@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Timer.ExceptionHandling.Exceptions;
 
 namespace Timer.Api.Home.GetTime
 {
@@ -17,11 +18,7 @@ namespace Timer.Api.Home.GetTime
         public Task<Response> Handle(Request request, CancellationToken cancellationToken)
         {
             if (!_appContainer.IsAvailable)
-                return Task.FromResult(new Response
-                {
-                    Now = DateTime.MinValue,
-                    ContainerId = Guid.Empty
-                });
+                throw new NotAvailableException();
             
             return Task.FromResult(new Response
             {
