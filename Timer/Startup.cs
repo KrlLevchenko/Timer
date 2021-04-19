@@ -23,6 +23,7 @@ namespace Timer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddLogging(configure => configure.AddConsole());
+            services.AddSingleton<AppContainer>();
             
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddValidators(typeof(Startup));
