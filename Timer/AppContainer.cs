@@ -12,5 +12,6 @@ namespace Timer
 
         public bool IsAvailable { get; set; }
         public Guid Id { get; }
+        
     }
 }
