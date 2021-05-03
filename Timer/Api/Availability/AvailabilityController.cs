@@ -15,10 +15,6 @@ namespace Timer.Api.Availability
             _mediator = mediator;
         }
 
-        [HttpGet("")]
-        public Task<Get.Response> Get(Get.Request request, CancellationToken ct) =>
-            _mediator.Send(request, ct);
-        
         [HttpPost("")]
         public Task Set(Set.Request request, CancellationToken ct) =>
             _mediator.Send(request, ct);

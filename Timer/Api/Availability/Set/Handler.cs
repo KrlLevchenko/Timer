@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Timer.App;
 
 namespace Timer.Api.Availability.Set
 {
@@ -16,7 +17,7 @@ namespace Timer.Api.Availability.Set
 
         protected override Task Handle(Request request, CancellationToken cancellationToken)
         {
-            _appContainer.IsAvailable = request.Value;
+            _appContainer.AppState = (AppState) request.Value;
             return Task.CompletedTask;
         }
     }

@@ -1,11 +1,14 @@
+using System.Collections.Generic;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Pushinator.Web.AppStart;
+using Timer.App;
 
 namespace Timer
 {
@@ -31,6 +34,10 @@ namespace Timer
 
             services.AddControllers();
             services.AddHttpContextAccessor();
+
+            services.AddHealthChecks()
+                .AddCheck<AppContainerHealthCheck>("custom_health_check")
+                .AddCheck<NeverCheck>("never_check");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +50,10 @@ namespace Timer
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                {
+                    Predicate = _ => _.Tags.Contains("never")
+                });
                 endpoints.MapControllerRoute(
                     "default",
                     "{controller=Home}/{action=Index}/{id?}");
