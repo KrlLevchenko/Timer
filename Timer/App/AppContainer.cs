@@ -10,42 +10,26 @@ namespace Timer.App
         public AppContainer()
         {
             Id = Guid.NewGuid();
-            AppState = AppState.Healthy;
+            Alive = true;
         }
 
-        public AppState AppState { get; set; }
+        public bool Alive { get; set; }
         public Guid Id { get; }
     }
 
-    public enum AppState
-    {
-        Healthy = 1,
-        Degraded = 2,
-        Unhealthy = 3
-    }
 
-    public class AppContainerHealthCheck : IHealthCheck
+    public class LivenessCheck : IHealthCheck
     {
         private readonly AppContainer _container;
 
-        public AppContainerHealthCheck(AppContainer container)
+        public LivenessCheck(AppContainer container)
         {
             _container = container;
         }
         
-        public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new CancellationToken())
+        public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new())
         {
-            switch (_container.AppState)
-            {
-                case AppState.Healthy:
-                    return Task.FromResult(HealthCheckResult.Healthy());
-                case AppState.Degraded:
-                    return Task.FromResult(HealthCheckResult.Degraded());
-                case AppState.Unhealthy:
-                    return Task.FromResult(HealthCheckResult.Unhealthy());
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            return Task.FromResult(_container.Alive ? HealthCheckResult.Healthy() : HealthCheckResult.Unhealthy());
         }
     }
 }

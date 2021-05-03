@@ -17,7 +17,7 @@ namespace Timer.Api.Availability.Set
 
         protected override Task Handle(Request request, CancellationToken cancellationToken)
         {
-            _appContainer.AppState = (AppState) request.Value;
+            _appContainer.Alive = request.Value;
             return Task.CompletedTask;
         }
     }

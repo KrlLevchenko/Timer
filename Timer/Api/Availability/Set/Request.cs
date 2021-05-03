@@ -5,7 +5,7 @@ namespace Timer.Api.Availability.Set
 {
     public class Request: IRequest
     {
-        [FromQuery] public int Value { get; set; }
+        [FromQuery] public bool Value { get; set; }
         
     }
 }
