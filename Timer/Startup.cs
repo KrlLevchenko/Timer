@@ -38,6 +38,9 @@ namespace Timer
             services.AddHealthChecks()
                 .AddCheck<AppContainerHealthCheck>("custom_health_check")
                 .AddCheck<NeverCheck>("never_check");
+
+            services.AddSingleton(_ =>
+                new ValuesContainer(Configuration["SecretValue"], Configuration["NotSecretValue"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -6,5 +6,8 @@ namespace Timer.Api.Home.GetTime
     {
         public DateTime Now { get; set; }
         public Guid ContainerId { get; set; }
+
+        public string SecretValue { get; set; }
+        public string NotSecretValue { get; set; }
     }
 }
