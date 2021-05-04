@@ -33,16 +33,14 @@ namespace Timer.Api.Drive.GetFile
             
             return Task.FromResult(new Response
             {
-                Content = ReadAllBytes(filePath)
+                Content = ReadAll(filePath)
             });
         }
         
-        private static byte[] ReadAllBytes(string filePath)
+        private static string ReadAll(string filePath)
         {
-            using var fileStream = File.OpenRead(filePath);
-            using var memoryStream = new MemoryStream();
-            fileStream.CopyTo(memoryStream);
-            return memoryStream.ToArray();
+            using var streamReader = new StreamReader(filePath);
+            return streamReader.ReadToEnd();
         }
     }
 }
