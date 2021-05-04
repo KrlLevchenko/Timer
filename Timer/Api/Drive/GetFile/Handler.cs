@@ -19,16 +19,10 @@ namespace Timer.Api.Drive.GetFile
         
         public Task<Response> Handle(Request request, CancellationToken cancellationToken)
         {
-            var directory = Path.Combine(_storageOptions.StorageFolder, request.FolderId);
-            if (!Directory.Exists(directory))
-            {
-                throw new DirectoryNotFoundException(request.FolderId);
-            }
-
-            var filePath = Path.Combine(directory, request.FileId);
+            var filePath = Path.Combine(_storageOptions.StorageFolder, request.FileId);
             if (!File.Exists(filePath))
             {
-                throw new FileNotFoundException(request.FolderId, request.FileId);
+                throw new FileNotFoundException(request.FileId);
             }
             
             return Task.FromResult(new Response

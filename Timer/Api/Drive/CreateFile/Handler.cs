@@ -26,9 +26,7 @@ namespace Timer.Api.Drive.CreateFile
                 throw new Exception("Unexpected httpContext is empty");
             }
 
-            var directory = Path.Combine(_storageOptions.StorageFolder, request.FolderId);
-            Directory.CreateDirectory(directory);
-            using (var fileStream = File.Create(Path.Combine(directory, request.FileId)))
+            using (var fileStream = File.Create(Path.Combine(_storageOptions.StorageFolder, request.FileId)))
             {
                 await _httpContextAccessor.HttpContext.Request.Body.CopyToAsync(fileStream, ct);
             }
