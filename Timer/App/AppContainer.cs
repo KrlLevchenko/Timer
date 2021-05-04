@@ -30,9 +30,7 @@ namespace Timer.App
         
         public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new())
         {
-            var lifetime = DateTime.UtcNow - _container.Created;
-            var ready = lifetime > TimeSpan.FromMinutes(1);
-            return Task.FromResult(ready ? HealthCheckResult.Healthy() : HealthCheckResult.Unhealthy());
+            return Task.FromResult(HealthCheckResult.Healthy());
         }
 
     }
