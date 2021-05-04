@@ -36,7 +36,8 @@ namespace Timer
             services.AddHttpContextAccessor();
 
             services.AddHealthChecks()
-                .AddCheck<LivenessCheck>("liveness", tags: new List<string> {"liveness"});
+                .AddCheck<LivenessCheck>("liveness", tags: new List<string> {"liveness"})
+                .AddCheck<ReadinessCheck>("readiness", tags: new List<string> {"readiness"});
 
             services.AddSingleton(_ =>
                 new ValuesContainer(Configuration["SecretValue"], Configuration["NotSecretValue"]));
@@ -55,6 +56,10 @@ namespace Timer
                 endpoints.MapHealthChecks("/health/liveness", new HealthCheckOptions
                 {
                     Predicate = _ => _.Tags.Contains("liveness")
+                });
+                endpoints.MapHealthChecks("/health/readiness", new HealthCheckOptions
+                {
+                    Predicate = _ => _.Tags.Contains("readiness")
                 });
                 endpoints.MapControllerRoute(
                     "default",
