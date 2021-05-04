@@ -21,7 +21,7 @@ namespace Timer.Api.Drive.GetFolders
             return Task.FromResult(new Response
             {
                 Folders = Directory.GetDirectories(_storageOptions.StorageFolder)
-                    .Select(Path.GetDirectoryName)
+                    .Select(Path.GetFileName)
                     .ToArray()
             });
         }
