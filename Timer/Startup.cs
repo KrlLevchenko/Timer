@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Pushinator.Web.AppStart;
 using Timer.App;
+using Timer.AppStart;
+using Timer.Drive;
 
 namespace Timer
 {
@@ -28,8 +30,11 @@ namespace Timer
             services.AddLogging(configure => configure.AddConsole());
             services.AddSingleton<AppContainer>();
             
+            services.AddSingleton(_ => new StorageOptions(Configuration["Storage"]));
+            
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddValidators(typeof(Startup));
+            services.AddBehaviorsForRequest<IDriveRequest>(typeof(Startup));
             services.AddErrorHandling(typeof(Startup));
 
             services.AddControllers();

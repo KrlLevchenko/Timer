@@ -7,8 +7,9 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Pushinator.Web.Core;
 
-namespace Pushinator.Web.AppStart
+namespace Timer.AppStart
 {
+	
 	public static class ValidatorRegistration
 	{
 		public static IServiceCollection AddValidators(this IServiceCollection services,
