@@ -30,7 +30,7 @@ namespace TimerClient
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    _applicationLifetime.StopApplication();
+                    Environment.ExitCode = 1;
                 }
               
                 _applicationLifetime.StopApplication();
