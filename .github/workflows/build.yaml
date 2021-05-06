@@ -53,4 +53,4 @@ jobs:
       with:
         push: true
         context: TimerClient
-        tags: "takayoshisimizu/timer:${{ steps.short_sha.outputs.sha7 }}"
+        tags: "takayoshisimizu/timer-client:${{ steps.short_sha.outputs.sha7 }}"
