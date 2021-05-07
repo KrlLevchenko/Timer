@@ -17,5 +17,9 @@ namespace Timer.Api.Home
         [Route("")]
         public Task<GetTime.Response> GetTime(GetTime.Request request, CancellationToken ct) =>
             _mediator.Send(request, ct);
+        
+        [Route("api/prime/{number:int}")]
+        public Task<GetPrime.Response> GetPrime(GetPrime.Request request, CancellationToken ct) =>
+            _mediator.Send(request, ct);
     }
 }
