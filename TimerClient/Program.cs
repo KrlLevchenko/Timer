@@ -22,7 +22,6 @@ namespace TimerClient
                 {
                     services.AddHttpClient<TimerApiClient>(httpClient =>
                         httpClient.BaseAddress = new Uri(configuration["DriveApiUrl"]));
-                    services.AddSingleton(_ => new ProgramExecutor(cts));
                     services.AddHostedService<TimerClientService>();
                 })
                 .RunConsoleAsync(cts.Token);
