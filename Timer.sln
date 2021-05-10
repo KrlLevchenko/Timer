@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerClient", "TimerClient\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dber", "Dber\Dber.csproj", "{9BE20693-AE30-4FE4-8DBF-1699E5223FCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerRun", "TimerRun\TimerRun.csproj", "{1CB189CC-6B1B-4467-A90B-6ED7B75AFCE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{9BE20693-AE30-4FE4-8DBF-1699E5223FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BE20693-AE30-4FE4-8DBF-1699E5223FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BE20693-AE30-4FE4-8DBF-1699E5223FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CB189CC-6B1B-4467-A90B-6ED7B75AFCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CB189CC-6B1B-4467-A90B-6ED7B75AFCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CB189CC-6B1B-4467-A90B-6ED7B75AFCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CB189CC-6B1B-4467-A90B-6ED7B75AFCE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
