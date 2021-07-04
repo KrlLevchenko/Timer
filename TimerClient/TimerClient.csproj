@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Timer.Proto\Timer.Proto.csproj" />
     </ItemGroup>
 
     <ItemGroup>
