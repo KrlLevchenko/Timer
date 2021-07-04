@@ -22,6 +22,10 @@ namespace Timer.Api.Drive
         [HttpGet("{fileId}")]
         public Task<GetFile.Response> GetFile(GetFile.Request request, CancellationToken ct) =>
             _mediator.Send(request, ct);
+        
+        [HttpDelete("{fileId}")]
+        public Task DeleteFile(DeleteFile.Request request, CancellationToken ct) =>
+            _mediator.Send(request, ct);
 
         [HttpGet("")]
         public Task<GetFileList.Response> GetFolders(GetFileList.Request request, CancellationToken ct) =>
