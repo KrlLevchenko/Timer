@@ -10,6 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Grpc.Net.Client" Version="2.38.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
