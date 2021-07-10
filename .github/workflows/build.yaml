@@ -31,14 +31,6 @@ jobs:
       run: dotnet publish --configuration Release
       working-directory: TimerClient
       
-    - name: Build Timer Run
-      run: dotnet build --configuration Release
-      working-directory: TimerRun
-
-    - name: Publish Timer Run
-      run: dotnet publish --configuration Release
-      working-directory: TimerRun
-
     - name: Login to DockerHub
       uses: docker/login-action@v1 
       with:
