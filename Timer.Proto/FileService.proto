@@ -1,14 +1,17 @@
 syntax = "proto3";
 
-import "google/protobuf/empty.proto";
 
 option csharp_namespace = "Timer.Proto.Files";
 
 service FileService{
-  rpc getFiles(google.protobuf.Empty) returns (FileIds);
-  rpc getFile(FileId) returns (FileContent);
-  rpc createFile(FileWithContent) returns (google.protobuf.Empty);
-  rpc deleteFile(FileId) returns (google.protobuf.Empty);
+  rpc GetFiles(Empty) returns (FileIds);
+  rpc GetFile(FileId) returns (FileContent);
+  rpc CreateFile(FileWithContent) returns (Empty);
+  rpc DeleteFile(FileId) returns (Empty);
+}
+
+message Empty{
+  
 }
 
 message FileIds {

@@ -6,7 +6,15 @@
 
     <ItemGroup>
       <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.3" />
+      <PackageReference Include="Google.Protobuf" Version="3.17.3" />
+      <PackageReference Include="Grpc.Core" Version="2.38.1" />
+      <PackageReference Include="Grpc.Core.Api" Version="2.38.1" />
+      <PackageReference Include="Grpc.Reflection" Version="2.38.1" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Timer.Proto\Timer.Proto.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using Grpc.Core;
+using Grpc.Reflection;
+using Grpc.Reflection.V1Alpha;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -10,7 +13,9 @@ using Microsoft.Extensions.Logging;
 using Pushinator.Web.AppStart;
 using Timer.App;
 using Timer.AppStart;
+using Timer.Core;
 using Timer.Drive;
+using Timer.Proto.Files;
 
 namespace Timer
 {
@@ -46,6 +51,25 @@ namespace Timer
 
             services.AddSingleton(_ =>
                 new ValuesContainer(Configuration["SecretValue"], Configuration["NotSecretValue"]));
+           
+            services.AddSingleton(sp =>
+            {
+                var reflectionServiceImpl = new ReflectionServiceImpl(FileService.Descriptor, ServerReflection.Descriptor);
+                var server = new Server
+                {
+                    Services =
+                    {
+                        FileService.BindService(new Grpc.FileService(sp.GetService<StorageOptions>())),
+                        ServerReflection.BindService(reflectionServiceImpl)
+                    },
+                    Ports = {new ServerPort("localhost", 3000, ServerCredentials.Insecure)},
+                    
+                };
+                return server;
+                
+            });
+            
+            services.AddHostedService<GrpcHostedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
